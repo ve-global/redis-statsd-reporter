@@ -1,0 +1,6 @@
+[
+  {
+    "host": "localhost",
+    "prefix": "my.redis.yay"
+  }
+]

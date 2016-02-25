@@ -1,0 +1,24 @@
+{
+  "name": "redis-statsd-reporter",
+  "version": "1.0.0",
+  "description": "pull info from redis and publish to statsd",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andyroyle/redis-statsd-reporter.git"
+  },
+  "author": "Andy Royle <ajroyle@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andyroyle/redis-statsd-reporter/issues"
+  },
+  "homepage": "https://github.com/andyroyle/redis-statsd-reporter#readme",
+  "dependencies": {
+    "async": "^1.5.2",
+    "redis": "^2.4.2",
+    "statsd-client": "^0.2.1"
+  }
+}
