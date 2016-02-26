@@ -19,5 +19,10 @@
   "dependencies": {
     "redis": "^2.4.2",
     "statsd-client": "^0.2.1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jshint": "^1.0.0"
   }
 }

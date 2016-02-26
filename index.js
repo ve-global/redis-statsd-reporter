@@ -18,7 +18,7 @@ var buildTags = function(tags){
   return Object.keys(tags || {})
     .map(function(k, v){
       return `${k}=${tags[k]}`;
-    }).join(',')
+    }).join(',');
 };
 
 var parseStats = function(info, prefix, tags){
@@ -28,7 +28,7 @@ var parseStats = function(info, prefix, tags){
     }
     var bits = f.split(':');
 
-    if(bits.length != 2 || gauges[bits[0]] === undefined){
+    if(bits.length !== 2 || gauges[bits[0]] === undefined){
       return;
     }
 
@@ -52,7 +52,7 @@ var redisClients = require(path.join(configDir, 'redis')).map(function(c){
   var cl = redis.createClient({
     host: c.host,
     port: c.port,
-    enable_offline_queue: false
+    'enable_offline_queue': false
   });
 
   cl.on('error', function(err){
