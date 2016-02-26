@@ -3,7 +3,7 @@
 var path = require('path');
 var util = require('util');
 var gauges = require('./gauges');
-var configDir = path.resolve(process.env.RSRPT_CONFIG_DIR || './');
+var configDir = path.resolve(process.argv[2] || './');
 
 var redis = require('redis');
 var StatsD = require('statsd-client');
