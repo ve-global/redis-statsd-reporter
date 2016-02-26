@@ -1,4 +1,4 @@
-Redis StatsD Reporter
+Redis StatsD Reporter [![Build Status](https://travis-ci.org/andyroyle/redis-statsd-reporter.svg?branch=master)](https://travis-ci.org/andyroyle/redis-statsd-reporter)
 ---
 
 A little node app that will poll one or more redis instances and push their statistics out to statsd
