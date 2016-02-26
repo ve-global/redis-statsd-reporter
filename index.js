@@ -5,7 +5,6 @@ var util = require('util');
 var gauges = require('./gauges');
 var configDir = path.resolve(process.env.RSRPT_CONFIG_DIR || './');
 
-var async = require('async');
 var redis = require('redis');
 var StatsD = require('statsd-client');
 
@@ -74,22 +73,17 @@ var redisClients = require(path.join(configDir, 'redis')).map(function(c){
   return cl;
 });
 
-setInterval(function() { 
-  async.each(redisClients, function(c, done){
+redisClients.forEach(function(c){
+  setInterval(function(){
     c.info(function(err, res){
       if(err){
-        return done(err);
+        util.log(`[${c.host}] ${err}`);
+        return;
       }
- 
-      parseStats(res, c.prefix, c.tags).forEach(function(k){ 
+
+      parseStats(res, c.prefix, c.tags).forEach(function(k){
         statsdClient.gauge(k[0], k[1]);
       });
-
-      return done();
     });
-  }, function(err){
-    if(err){
-      util.log(err);
-    }
-  });
-}, (statsConfig.interval || 10) * 1000);
+  }, (statsConfig.interval || 10) * 1000);
+});
