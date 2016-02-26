@@ -9,6 +9,8 @@ cd /usr/lib/node_modules/redis-statsd-reporter
 RSRPT_CONFIG_DIR="/path/to/config/files/" node index.js
 ```
 
+###Config Files
+
 ###redis.json
 ```javascript
 [
