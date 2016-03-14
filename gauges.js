@@ -20,5 +20,7 @@ module.exports = {
   "total_commands_processed":   0,
   "total_connections_received": 0,
   "instantaneous_input_kbps":   0,
-  "instantaneous_output_kbps":  0
+  "instantaneous_output_kbps":  0,
+  "bytes_received_per_sec":     0,
+  "bytes_sent_per_sec":         0
 };
