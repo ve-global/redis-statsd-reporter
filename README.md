@@ -4,9 +4,8 @@ Redis StatsD Reporter [![Build Status](https://travis-ci.org/andyroyle/redis-sta
 A little node app that will poll one or more redis instances and push their statistics out to statsd
 
 ```
-npm i redis-statsd-reporter
-cd node_modules/redis-statsd-reporter
-node index.js /path/to/config/files/
+npm i -g redis-statsd-reporter
+redis-statsd /path/to/config/files/
 ```
 
 ###Config Files
