@@ -12,7 +12,7 @@ util.log('starting...');
 util.log(`using config from ${configDir}`);
 
 var statsConfig = require(path.join(configDir, 'statsd'));
-var statsdClient = new StatsD({ host: statsConfig.host, port: statsConfig.port });
+var statsdClient = new StatsD({ host: statsConfig.host, port: statsConfig.port, debug: statsConfig.debug });
 
 var buildTags = function(tags){
   return Object.keys(tags || {})
