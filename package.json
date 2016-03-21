@@ -1,6 +1,6 @@
 {
   "name": "redis-statsd-reporter",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "pull info from redis and publish to statsd",
   "main": "index.js",
   "scripts": {
