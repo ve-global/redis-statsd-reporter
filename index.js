@@ -28,7 +28,7 @@ var getPrefix = function(prefix){
     pre = `${prefix}.`;
   }
   return pre;
-}
+};
 
 var redisClients = require(path.join(configDir, 'redis')).map(redisClientFactory);
 
