@@ -50,6 +50,7 @@ redis-statsd /path/to/config/files/
 - used_memory_lua
 - used_memory_peak
 - used_memory_rss
+- maxmemory
 - evicted_keys
 - expired_keys
 - keyspace_hits
@@ -71,3 +72,6 @@ redis-statsd /path/to/config/files/
 - keys
 - expires
 - avg_ttl
+
+####Computed fields
+- percent_used (calculated from used_memory and maxmemory, where available)
