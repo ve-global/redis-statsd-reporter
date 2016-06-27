@@ -17,6 +17,8 @@ redis-statsd /path/to/config/files/
     "host": "my.redis.host",
     "port": 6379,                  // default: 6379
     "password": "foobar",          // optional,
+    "cluster": false,              // optional (default false)
+    "nodeNames": "prefix",         // optional "tag" or "prefix" (default "prefix"),
     "prefix": "foo.bar.redis.yay", // optional,
     "tags": {                      // optional, tags are supported by the influxdb backend
       "foo": "bar"
@@ -75,3 +77,18 @@ redis-statsd /path/to/config/files/
 
 ####Computed fields
 - percent_used (calculated from used_memory and maxmemory, where available)
+
+###Redis Cluster support
+This module supports redis clustering out-of-the-box. The two relevant configuration options are:
+
+`cluster` - values: `true` or `false`
+
+Tells the redis driver to treat the given server as part of a cluster.
+
+When clustering is turned on, the INFO command is sent to all members and the stats are logged per-cluster member.
+
+`nodeNames` - values: `"tag"` or `"prefix"`
+
+Defines whether you want the node-name (`cluster_myself_name`) to be part of the measurement name ('prefix') or appended as a tag (`tag`). Tags are only supported by the statsd influxdb backend. If you are unsure, leave this parameter unset.
+
+__Note__: The `nodeNames` parameter is ignored when `cluster = false`
