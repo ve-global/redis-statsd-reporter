@@ -1,6 +1,8 @@
 [
   {
     "host": "localhost",
-    "prefix": "my.redis.yay"
+    "prefix": "my.redis.yay",
+    "cluster": false,
+    "nodeNames": "prefix"
   }
 ]
