@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = `# Server
 redis_version:3.2.1
 redis_git_sha1:00000000

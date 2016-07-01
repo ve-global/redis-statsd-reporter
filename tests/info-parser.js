@@ -1,3 +1,5 @@
+'use strict';
+
 var should = require('should');
 
 describe('info-parser', () => {
@@ -45,4 +47,4 @@ describe('info-parser', () => {
       result[0].name.should.equal('0aea521');
     });
   });
-})
+});
