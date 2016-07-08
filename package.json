@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/andyroyle/redis-statsd-reporter#readme",
   "dependencies": {
+    "async": "^2.0.0-rc.6",
     "ioredis": "^2.0.1",
     "statsd-client": "^0.2.1"
   },
