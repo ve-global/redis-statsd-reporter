@@ -20,6 +20,9 @@ redis-statsd /path/to/config/files/
     "cluster": false,              // optional (default false)
     "nodeNames": "prefix",         // optional "tag" or "prefix" (default "prefix"),
     "prefix": "foo.bar.redis.yay", // optional,
+    "keyCounters": {
+      "zset": [ "sampleKey" ]
+    },
     "tags": {                      // optional, tags are supported by the influxdb backend
       "foo": "bar"
     }
@@ -69,6 +72,9 @@ redis-statsd /path/to/config/files/
 - bytes_sent_per_sec*
 
 (* `bytes_sent/recieved_per_sec` was changed in favour of `instantaneous_output/input_kbps` version 3.0.7 of redis-server)
+
+#### Key specific metrics
+- zcount for zset
 
 ####Per-DB metrics
 - keys
