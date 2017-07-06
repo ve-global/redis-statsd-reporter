@@ -1,5 +1,5 @@
 'use strict';
-let ten = 10;
+let defaultInterval = 10;
 let milisecondToSecondMultiplier = 1000;
 const path = require('path');
 const util = require('util');
@@ -49,5 +49,5 @@ redisClients.forEach((c) => {
       statsdClient.gauge(`${c.prefix}.${stat.key}.${c.suffix}`, stat.count);
     });
 
-  }, (statsConfig.interval || ten) * milisecondToSecondMultiplier);
+  }, (statsConfig.interval || defaultInterval) * milisecondToSecondMultiplier);
 });
