@@ -5,6 +5,7 @@ const util = require('util');
 const infoParser = require('./lib/info-parser');
 const redisClientFactory = require('./lib/redis-client-factory');
 const libUtils = require('./lib/utils');
+var keyCounter = require('./lib/redis-key-counter');
 var configDir = path.resolve(process.argv[2] || './');
 
 const StatsD = require('statsd-client');
@@ -20,10 +21,9 @@ var redisClients = require(path.join(configDir, 'redis')).map(redisClientFactory
 redisClients.forEach((c) => {
   setInterval(() => {
     var action = c.isCluster ? 'clusterInfo' : 'info';
-    var keyCounter = require('./lib/redis-key-counter').bind(c);
-    
+
     c[action]((err, res) => {
-      if(err) {
+      if (err) {
         util.log(`[${c.host}] ${err}`);
         return;
       }
@@ -35,8 +35,18 @@ redisClients.forEach((c) => {
         Object.keys(shard.stats).forEach((k) => {
           statsdClient.gauge(`${prefix}${k}${suffix}`, shard.stats[k]);
         });
-        
+
       });
     });
+
+    keyCounter.count(c, (err, stat) => {
+      if (err) {
+        util.log(`[${c.host}] ${err}`);
+        return;
+      }
+
+      statsdClient.gauge(`${c.prefix}.${stat.key}.${c.suffix}`, stat.count);
+    });
+
   }, (statsConfig.interval || 10) * 1000);
 });
