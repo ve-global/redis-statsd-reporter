@@ -20,7 +20,8 @@ var redisClients = require(path.join(configDir, 'redis')).map(redisClientFactory
 redisClients.forEach((c) => {
   setInterval(() => {
     var action = c.isCluster ? 'clusterInfo' : 'info';
-
+    var keyCounter = require('./lib/redis-key-counter').bind(c);
+    
     c[action]((err, res) => {
       if(err) {
         util.log(`[${c.host}] ${err}`);
@@ -34,6 +35,7 @@ redisClients.forEach((c) => {
         Object.keys(shard.stats).forEach((k) => {
           statsdClient.gauge(`${prefix}${k}${suffix}`, shard.stats[k]);
         });
+        
       });
     });
   }, (statsConfig.interval || 10) * 1000);
