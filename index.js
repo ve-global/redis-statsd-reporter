@@ -1,6 +1,6 @@
 'use strict';
 let defaultInterval = 10;
-let milisecondToSecondMultiplier = 1000;
+let oneSecInMs = 1000;
 const path = require('path');
 const util = require('util');
 const infoParser = require('./lib/info-parser');
@@ -49,5 +49,5 @@ redisClients.forEach((c) => {
       statsdClient.gauge(`${c.prefix}.${stat.key}.${c.suffix}`, stat.count);
     });
 
-  }, (statsConfig.interval || defaultInterval) * milisecondToSecondMultiplier);
+  }, (statsConfig.interval || defaultInterval) * oneSecInMs);
 });
