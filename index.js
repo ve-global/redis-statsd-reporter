@@ -1,11 +1,12 @@
 'use strict';
-
+let ten = 10;
+let milisecondToSecondMultiplier = 1000;
 const path = require('path');
 const util = require('util');
 const infoParser = require('./lib/info-parser');
 const redisClientFactory = require('./lib/redis-client-factory');
 const libUtils = require('./lib/utils');
-var keyCounter = require('./lib/redis-key-counter');
+let keyCounter = require('./lib/redis-key-counter');
 var configDir = path.resolve(process.argv[2] || './');
 
 const StatsD = require('statsd-client');
@@ -48,5 +49,5 @@ redisClients.forEach((c) => {
       statsdClient.gauge(`${c.prefix}.${stat.key}.${c.suffix}`, stat.count);
     });
 
-  }, (statsConfig.interval || 10) * 1000);
+  }, (statsConfig.interval || ten) * milisecondToSecondMultiplier);
 });
