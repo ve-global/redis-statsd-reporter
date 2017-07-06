@@ -3,6 +3,9 @@
     "host": "localhost",
     "prefix": "my.redis.yay",
     "cluster": false,
-    "nodeNames": "prefix"
+    "nodeNames": "prefix",
+    "keyCounters": {
+      "zset": [ "sampleKey" ]
+    }
   }
 ]
