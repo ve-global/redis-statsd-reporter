@@ -5,7 +5,7 @@
     "cluster": false,
     "nodeNames": "prefix",
     "keyCounters": {
-      "zset": [ "timeout-expiry:sorted-set" ]
+      "zset": [ "sampleKey" ]
     }
   }
 ]
