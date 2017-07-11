@@ -1,7 +1,7 @@
 {
   "name": "redis-statsd-reporter",
   "version": "1.5.0",
-  "description": "pull info from redis and publish to statsd",
+  "description": "Pull info from redis and publish to statsd",
   "main": "index.js",
   "scripts": {
     "test": "grunt"
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/ve-interactive/redis-statsd-reporter.git"
   },
-  "author": "Andy Royle <ajroyle@gmail.com>",
+  "author": "Ve <itopsinfra@ve.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/ve-interactive/redis-statsd-reporter/issues"
