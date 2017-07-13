@@ -1,7 +1,7 @@
 'use strict';
 let defaultInterval = 10;
 let oneSecInMs = 1000;
-let zsetMetricAppendName = "zset"
+let keyCountAppendName = 'keyCounter';
 const path = require('path');
 const util = require('util');
 const infoParser = require('./lib/info-parser');
@@ -42,8 +42,8 @@ redisClients.forEach((c) => {
     });
 
     keyCounter.count(c, (err, stat) => {
-      var prefix = libUtils.getPrefix(c, zsetMetricAppendName);
-      var suffix = libUtils.getSuffix(c, zsetMetricAppendName);
+      var prefix = libUtils.getPrefix(c, keyCountAppendName);
+      var suffix = libUtils.getSuffix(c, keyCountAppendName);
 
       if (err) {
         util.log(`[${c.host}] ${err}`);
