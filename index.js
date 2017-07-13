@@ -1,6 +1,7 @@
 'use strict';
 let defaultInterval = 10;
 let oneSecInMs = 1000;
+let keyCountAppendName = 'keyCounter';
 const path = require('path');
 const util = require('util');
 const infoParser = require('./lib/info-parser');
@@ -41,12 +42,15 @@ redisClients.forEach((c) => {
     });
 
     keyCounter.count(c, (err, stat) => {
+      var prefix = libUtils.getPrefix(c, keyCountAppendName);
+      var suffix = libUtils.getSuffix(c, keyCountAppendName);
+
       if (err) {
         util.log(`[${c.host}] ${err}`);
         return;
       }
 
-      statsdClient.gauge(`${c.prefix}.${stat.key}.${c.suffix}`, stat.count);
+      statsdClient.gauge(`${prefix}${stat.key}${suffix}`, stat.count);
     });
 
   }, (statsConfig.interval || defaultInterval) * oneSecInMs);
