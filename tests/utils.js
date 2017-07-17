@@ -49,4 +49,11 @@ describe('utils', () => {
       result.should.equal(',host=foo,node=bar');
     });
   });
+
+  describe('cleanKey', () => {
+    it('should replace occurances of ":" with "-" in the given key', () => {
+      var result = utils.cleanKey('test:key');
+      result.should.equal('test-key');
+    });
+  });
 });

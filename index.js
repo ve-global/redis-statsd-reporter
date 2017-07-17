@@ -1,16 +1,14 @@
 'use strict';
-let defaultInterval = 10;
-let oneSecInMs = 1000;
-let keyCountAppendName = 'keyCounter';
-let statsdIllegalCharacter = ':';
-let defaultWordSeparatorCharacter = '-';
+const defaultInterval = 10;
+const oneSecInMs = 1000;
+const keyCountAppendName = 'keyCounter';
 
 const path = require('path');
 const util = require('util');
 const infoParser = require('./lib/info-parser');
 const redisClientFactory = require('./lib/redis-client-factory');
 const libUtils = require('./lib/utils');
-let keyCounter = require('./lib/redis-key-counter');
+const keyCounter = require('./lib/redis-key-counter');
 var configDir = path.resolve(process.argv[2] || './');
 
 const StatsD = require('statsd-client');
@@ -47,13 +45,12 @@ redisClients.forEach((c) => {
     keyCounter.count(c, (err, stat) => {
       var prefix = libUtils.getPrefix(c, keyCountAppendName);
       var suffix = libUtils.getSuffix(c, keyCountAppendName);
+      let cleanKey = libUtils.cleanKey(stat.key);
 
       if (err) {
         util.log(`[${c.host}] ${err}`);
         return;
       }
-
-      var cleanKey = stat.key.replace(statsdIllegalCharacter, defaultWordSeparatorCharacter);
       
       statsdClient.gauge(`${prefix}${cleanKey}${suffix}`, stat.count);
     });
