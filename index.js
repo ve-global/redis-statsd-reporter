@@ -45,6 +45,9 @@ redisClients.forEach((c) => {
     });
 
     keyCounter.count(c, (err, stat) => {
+      var prefix = libUtils.getPrefix(c, keyCountAppendName);
+      var suffix = libUtils.getSuffix(c, keyCountAppendName);
+
       if (err) {
         util.log(`[${c.host}] ${err}`);
         return;
