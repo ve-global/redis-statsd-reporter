@@ -51,7 +51,7 @@ redisClients.forEach((c) => {
         util.log(`[${c.host}] ${err}`);
         return;
       }
-      
+
       statsdClient.gauge(`${prefix}${cleanKey}${suffix}`, stat.count);
     });
 
