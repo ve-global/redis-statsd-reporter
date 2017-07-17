@@ -1,6 +1,10 @@
 'use strict';
 let defaultInterval = 10;
 let oneSecInMs = 1000;
+let keyCountAppendName = 'keyCounter';
+let statsdIllegalCharacter = ':';
+let defaultWordSeparatorCharacter = '-';
+
 const path = require('path');
 const util = require('util');
 const infoParser = require('./lib/info-parser');
@@ -46,7 +50,9 @@ redisClients.forEach((c) => {
         return;
       }
 
-      statsdClient.gauge(`${c.prefix}.${stat.key}.${c.suffix}`, stat.count);
+      var cleanKey = stat.key.replace(statsdIllegalCharacter, defaultWordSeparatorCharacter);
+      
+      statsdClient.gauge(`${prefix}${cleanKey}${suffix}`, stat.count);
     });
 
   }, (statsConfig.interval || defaultInterval) * oneSecInMs);
